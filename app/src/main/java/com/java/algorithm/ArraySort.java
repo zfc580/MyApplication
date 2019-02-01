@@ -1,6 +1,8 @@
 package com.java.algorithm;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class ArraySort {
 
@@ -56,7 +58,7 @@ public class ArraySort {
         for (int i = 0; i < n; i++) {
             int min = a[i];
             int index = i;
-            for (int j = i; j < n; j++) {
+            for (int j = i + 1; j < n; j++) {
                 if (a[j] < min) {
                     min = a[j];
                     index = j;
@@ -126,10 +128,14 @@ public class ArraySort {
         int i = start;
         for (int j = i; j<end; j++) {
             if (a[j] < pivot) {
-                int temp = a[j];
-                a[j] = a[i];
-                a[i] = temp;
-                i++;
+                if (i == j) { //如果i和j相等时，不需要同一个数互相交换
+                    i++;
+                } else {
+                    int temp = a[j];
+                    a[j] = a[i];
+                    a[i] = temp;
+                    i++;
+                }
             }
         }
         a[end] = a[i];
@@ -142,9 +148,9 @@ public class ArraySort {
         int a[] = {71, 44, 52, 13, 24, 15, 6};
         //bubbleSort(a, a.length);
         //insertionSort(a, a.length);
-        //selectionSort(a, a.length);
+        selectionSort(a, a.length);
         //mergeSort(a, a.length);
-        quick_sort(a, a.length);
+        //quick_sort(a, a.length);
         System.out.println(Arrays.toString(a));
     }
 }
